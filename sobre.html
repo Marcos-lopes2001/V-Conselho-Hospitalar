@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="pt-MZ">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sobre - V Conselho Hospitalar 2026</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        .sobre-page {
+            padding: 40px 0 60px;
+        }
+
+        .page-header {
+            background: linear-gradient(135deg, #dbeafe 0%, #ffffff 100%);
+            padding: 60px 0 40px;
+            text-align: center;
+            border-bottom: 2px solid #60a5fa;
+        }
+
+        .page-header h1 {
+            font-size: 40px;
+            color: #1a202c;
+        }
+
+        .page-header p {
+            color: #4a5568;
+            margin-top: 8px;
+            font-size: 18px;
+        }
+
+        .sobre-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 48px;
+            margin-top: 30px;
+        }
+
+        .sobre-info h2 {
+            font-size: 28px;
+            color: var(--text-dark);
+            margin-bottom: 16px;
+        }
+
+        .sobre-info h3 {
+            font-size: 20px;
+            color: var(--text-dark);
+            margin: 30px 0 12px;
+            border-left: 4px solid var(--primary);
+            padding-left: 12px;
+        }
+
+        .sobre-info p {
+            color: var(--text-light);
+            line-height: 1.8;
+            margin-bottom: 16px;
+        }
+
+        .sobre-info ul {
+            padding-left: 0;
+            margin-bottom: 16px;
+        }
+
+        .sobre-info li {
+            color: var(--text-light);
+            margin-bottom: 8px;
+            list-style: none;
+            padding-left: 24px;
+            position: relative;
+        }
+
+        .sobre-info li::before {
+            content: "✦";
+            position: absolute;
+            left: 0;
+            color: var(--primary);
+        }
+
+        .sobre-lateral {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .card-info {
+            background: var(--white);
+            padding: 20px 24px;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            border-left: 4px solid var(--primary);
+        }
+
+        .card-info .card-icon {
+            font-size: 28px;
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .card-info h4 {
+            font-size: 13px;
+            color: var(--text-light);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 4px;
+        }
+
+        .card-info p {
+            font-size: 14px;
+            color: var(--text-dark);
+            margin: 0;
+        }
+
+        .card-info .numero-grande {
+            font-size: 28px;
+            font-weight: 800;
+            color: var(--primary);
+            display: block;
+        }
+
+        .sobre-lateral .org-card {
+            background: var(--primary-bg);
+            padding: 20px;
+            border-radius: 12px;
+            border: 1px solid rgba(26, 86, 219, 0.15);
+        }
+
+        .sobre-lateral .org-card h4 {
+            color: var(--primary);
+            font-size: 16px;
+            margin-bottom: 4px;
+        }
+
+        .sobre-lateral .org-card p {
+            color: var(--text-light);
+            font-size: 14px;
+        }
+
+        @media (max-width: 768px) {
+            .sobre-grid {
+                grid-template-columns: 1fr;
+                gap: 32px;
+            }
+            .page-header h1 {
+                font-size: 28px;
+            }
+            .sobre-info h2 {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="logo-area">
+                <div class="emblema">
+                    <img src="assets/images/logo.png" alt="Logo" class="logo-img" onerror="this.src='https://via.placeholder.com/80x80?text=SSCM'">
+                </div>
+                <div class="titulo-logo">
+                    <span class="pequeno">Serviço de Saúde da Cidade de Maputo</span>
+                    <h1>V Conselho Hospitalar</h1>
+                    <span class="subtitulo">Cidade de Maputo · 2026</span>
+                </div>
+            </div>
+            <nav class="nav">
+                <button class="mobile-menu-btn" id="mobileMenuBtn"></button>
+                <ul class="nav-list" id="navList">
+                    <li><a href="index.html">Início</a></li>
+                    <li><a href="agenda.html">Agenda</a></li>
+                    <li><a href="participantes.html">Participantes</a></li>
+                    <li><a href="documentos.html">Documentos</a></li>
+                    <li><a href="fotos.html">Fotos</a></li>
+                    <li><a href="sobre.html" class="active">Sobre</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="page-header">
+            <div class="container">
+                <h1>Sobre o Evento</h1>
+                <p>Informações gerais do V Conselho Hospitalar da Cidade de Maputo</p>
+            </div>
+        </section>
+
+        <section class="sobre-page">
+            <div class="container">
+                <div class="sobre-grid">
+                    <div class="sobre-info">
+                        <h2>V Conselho Hospitalar da Cidade de Maputo</h2>
+                        <p>O <strong>Conselho Hospitalar</strong> é um fórum anual promovido pelo <strong>Serviço de Saúde da Cidade de Maputo (SSCM)</strong>, através da <strong>Repartição da Assistência Médica (RAM)</strong>, que reúne profissionais de saúde, gestores e lideranças dos hospitais públicos para avaliar e melhorar a qualidade assistencial.</p>
+
+                        <h3> Objectivo Geral</h3>
+                        <p>Avaliar a Qualidade Assistencial nos hospitais da Cidade de Maputo, promovendo a melhoria contínua dos serviços de saúde prestados à população.</p>
+
+                        <h3> Objectivos Específicos</h3>
+                        <ul>
+                            <li>Analisar o grau de cumprimento das recomendações do Conselho Hospitalar anterior</li>
+                            <li>Avaliar os indicadores hospitalares e de qualidade assistencial</li>
+                            <li>Discutir estratégias para redução da mortalidade materna e neonatal</li>
+                            <li>Promover a humanização do atendimento nos serviços de saúde</li>
+                            <li>Fortalecer a gestão de recursos materiais e humanos nos hospitais</li>
+                            <li>Elaborar recomendações para melhoria contínua da qualidade</li>
+                        </ul>
+
+                        <h3> Participantes</h3>
+                        <p>O evento conta com a participação de <strong>52 profissionais</strong> de <strong>9 instituições</strong>, incluindo:</p>
+                        <ul>
+                            <li>Serviço de Saúde da Cidade de Maputo (SSCM)</li>
+                            <li>Ministério da Saúde (MISAU)</li>
+                            <li>Hospital Central de Maputo (HCM)</li>
+                            <li>Hospital Geral José Macamo (HGJM)</li>
+                            <li>Hospital Geral de Mavalane (HGM)</li>
+                            <li>Hospital Geral de Chamanculo (HGC)</li>
+                            <li>Hospital Geral Polana Caniço (HGPC)</li>
+                            <li>Hospital Psiquiátrico de Infulene (HPI)</li>
+                            <li>SEMMO</li>
+                        </ul>
+
+                        <h3> Datas e Local</h3>
+                        <p>O <strong>V Conselho Hospitalar</strong> realiza-se nos dias <strong>29 a 31 de Julho de 2026</strong>, na <strong>Província de Maputo</strong>, com uma programação abrangente que inclui palestras, painéis de debate, apresentações de casos clínicos e discussões plenárias.</p>
+                    </div>
+
+                    <div class="sobre-lateral">
+                        <div class="card-info">
+                            <span class="card-icon"></span>
+                            <h4>Data</h4>
+                            <p>29 a 31 de Julho de 2026</p>
+                        </div>
+                        <div class="card-info">
+                            <span class="card-icon"></span>
+                            <h4>Local</h4>
+                            <p>Província de Maputo</p>
+                        </div>
+                        <div class="card-info">
+                            <span class="card-icon"></span>
+                            <h4>Participantes</h4>
+                            <span class="numero-grande">52</span>
+                            <p>Profissionais de saúde</p>
+                        </div>
+                        <div class="card-info">
+                            <span class="card-icon"></span>
+                            <h4>Instituições</h4>
+                            <span class="numero-grande">9</span>
+                            <p>Hospitais e serviços de saúde</p>
+                        </div>
+
+                        <div class="org-card">
+                            <h4>Organização</h4>
+                            <p><strong>Serviço de Saúde da Cidade de Maputo</strong></p>
+                            <p>Departamento de Saúde</p>
+                            <p>Repartição da Assistência Médica (RAM)</p>
+                        </div>
+
+                        <div class="org-card">
+                            <h4>Contacto</h4>
+                            <p>Email: <a href="mailto:dpc@sscm.gov.mz" style="color: var(--primary);">dpc@sscm.gov.mz</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <div class="footer-logo">
+                        <img src="assets/images/logo.png" alt="Logo" class="logo-footer" onerror="this.src='https://via.placeholder.com/50x50?text=SSCM'">
+                        <div>
+                            <h3>V Conselho Hospitalar</h3>
+                            <p>Cidade de Maputo · 2026</p>
+                        </div>
+                    </div>
+                    <p class="footer-desc">Melhorar a Qualidade Assistencial nos Serviços de Saúde</p>
+                </div>
+                <div class="footer-links">
+                    <div>
+                        <h4>Navegação</h4>
+                        <ul>
+                            <li><a href="index.html">Início</a></li>
+                            <li><a href="agenda.html">Agenda</a></li>
+                            <li><a href="participantes.html">Participantes</a></li>
+                            <li><a href="documentos.html">Documentos</a></li>
+                            <li><a href="fotos.html">Fotos</a></li>
+                            <li><a href="sobre.html">Sobre</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4>Evento</h4>
+                        <ul>
+                            <li>29 a 31 de Julho de 2026</li>
+                            <li>Província de Maputo</li>
+                            <li>V Conselho Hospitalar</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4>Contacto</h4>
+                        <ul>
+                            <li>Departamento de Saúde</li>
+                            <li>Repartição da Assistência Médica</li>
+                            <li>SSCM - Cidade de Maputo</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2026 V Conselho Hospitalar · Serviço de Saúde da Cidade de Maputo</p>
+                <p class="lema-footer">"Qualidade Assistencial para uma Saúde Melhor"</p>
+                <p style="margin-top: 8px; font-size: 12px; opacity: 0.6;">Desenvolvido por Marcos Lopes</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Menu Mobile
+        var mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        var navList = document.getElementById('navList');
+
+        if (mobileMenuBtn) {
+            mobileMenuBtn.addEventListener('click', function() {
+                navList.classList.toggle('active');
+            });
+        }
+
+        document.querySelectorAll('.nav-list a').forEach(function(link) {
+            link.addEventListener('click', function() {
+                navList.classList.remove('active');
+            });
+        });
+
+        // Animações
+        var observerOptions = { threshold: 0.15, rootMargin: '0px 0px -50px 0px' };
+        var observer = new IntersectionObserver(function(entries) {
+            entries.forEach(function(entry) {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-up').forEach(function(el) {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>

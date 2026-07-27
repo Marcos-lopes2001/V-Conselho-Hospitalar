@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="pt-MZ">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documentos - V Conselho Hospitalar 2026</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        .documentos-page { padding: 40px 0 60px; }
+        .page-header {
+            background: linear-gradient(135deg, #dbeafe 0%, #ffffff 100%);
+            padding: 60px 0 40px; text-align: center; border-bottom: 2px solid #60a5fa;
+        }
+        .page-header h1 { font-size: 40px; color: #1a202c; }
+        .page-header p { color: #4a5568; margin-top: 8px; font-size: 18px; }
+
+        .documentos-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px; margin-top: 30px;
+        }
+        .documento-card {
+            background: var(--white); padding: 30px 24px; border-radius: 16px;
+            text-align: center; border: 1px solid #e2e8f0; transition: all 0.3s;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        }
+        .documento-card:hover { transform: translateY(-5px); box-shadow: 0 10px 30px rgba(0,0,0,0.1); border-color: var(--primary); }
+        .documento-icon { font-size: 40px; display: block; margin-bottom: 12px; }
+        .documento-card h3 { font-size: 16px; color: var(--text-dark); margin-bottom: 4px; }
+        .documento-card p { font-size: 13px; color: var(--text-light); margin-bottom: 16px; }
+        .btn-download {
+            display: inline-block; background: var(--primary); color: white; padding: 10px 24px;
+            border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 14px;
+            transition: background 0.3s; border: none; cursor: pointer;
+        }
+        .btn-download:hover { background: var(--primary-dark); }
+
+        .categoria-documentos {
+            margin-top: 40px; margin-bottom: 20px; font-size: 22px; font-weight: 700;
+            color: var(--text-dark); border-left: 4px solid var(--primary); padding-left: 16px;
+        }
+        .categoria-badge {
+            display: inline-block; background: var(--primary); color: white;
+            padding: 2px 12px; border-radius: 12px; font-size: 12px; font-weight: 600;
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="logo-area">
+                <div class="emblema">
+                    <img src="assets/images/logo.png" alt="Logo" class="logo-img" onerror="this.src='https://via.placeholder.com/80x80?text=SSCM'">
+                </div>
+                <div class="titulo-logo">
+                    <span class="pequeno">Serviço de Saúde da Cidade de Maputo</span>
+                    <h1>V Conselho Hospitalar</h1>
+                    <span class="subtitulo">Cidade de Maputo · 2026</span>
+                </div>
+            </div>
+            <nav class="nav">
+                <button class="mobile-menu-btn" id="mobileMenuBtn">☰</button>
+                <ul class="nav-list" id="navList">
+                    <li><a href="index.html">Início</a></li>
+                    <li><a href="agenda.html">Agenda</a></li>
+                    <li><a href="participantes.html">Participantes</a></li>
+                    <li><a href="documentos.html" class="active">Documentos</a></li>
+                    <li><a href="fotos.html">Fotos</a></li>
+                    <li><a href="sobre.html">Sobre</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="page-header">
+            <div class="container">
+                <h1>Documentos Oficiais</h1>
+                <p>Materiais e apresentações do V Conselho Hospitalar</p>
+            </div>
+        </section>
+
+        <section class="documentos-page">
+            <div class="container">
+                <div class="categoria-documentos">
+                     Documentos do Evento
+                    <span class="categoria-badge">3 documentos</span>
+                </div>
+                <div class="documentos-grid">
+                    <div class="documento-card fade-up">
+                        <span class="documento-icon"></span>
+                        <h3>Expediente do Conselho Hospitalar</h3>
+                        <p>Pedido de Autorização e Libertação de Fundos</p>
+                        <button onclick="baixarArquivo('Expediente_Conselho_Hospitalar.pdf', 'Expediente-Conselho-Hospitalar.pdf')" class="btn-download">📥 Baixar PDF</button>
+                    </div>
+                    
+                    <div class="documento-card fade-up delay-2">
+                        <span class="documento-icon"></span>
+                        <h3>Lista de Participantes</h3>
+                        <p>Relação completa dos participantes por instituição</p>
+                        <button onclick="baixarArquivo('Lista_Participantes_Conselho_Hospitalar.pdf', 'Lista-Participantes-Conselho-Hospitalar.pdf')" class="btn-download">📥 Baixar PDF</button>
+                    </div>
+                    <div class="documento-card fade-up delay-3">
+                        <span class="documento-icon"></span>
+                        <h3>Agenda do Evento</h3>
+                        <p>Programação completa dos 3 dias do Conselho</p>
+                        <button onclick="baixarArquivo('Agenda_Conselho_Hospitalar.pdf', 'Agenda-Conselho-Hospitalar.pdf')" class="btn-download">📥 Baixar PDF</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <div class="footer-logo">
+                        <img src="assets/images/logo.png" alt="Logo" class="logo-footer" onerror="this.src='https://via.placeholder.com/50x50?text=SSCM'">
+                        <div><h3>V Conselho Hospitalar</h3><p>Cidade de Maputo · 2026</p></div>
+                    </div>
+                    <p class="footer-desc">Melhorar a Qualidade Assistencial nos Serviços de Saúde</p>
+                </div>
+                <div class="footer-links">
+                    <div><h4>Navegação</h4><ul><li><a href="index.html">Início</a></li><li><a href="agenda.html">Agenda</a></li><li><a href="participantes.html">Participantes</a></li><li><a href="documentos.html">Documentos</a></li><li><a href="fotos.html">Fotos</a></li><li><a href="sobre.html">Sobre</a></li></ul></div>
+                    <div><h4>Evento</h4><ul><li>29 a 31 de Julho de 2026</li><li>Província de Maputo</li><li>V Conselho Hospitalar</li></ul></div>
+                    <div><h4>Contacto</h4><ul><li>Departamento de Saúde</li><li>Repartição da Assistência Médica</li><li>SSCM - Cidade de Maputo</li></ul></div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2026 V Conselho Hospitalar · Serviço de Saúde da Cidade de Maputo</p>
+                <p class="lema-footer">"Qualidade Assistencial para uma Saúde Melhor"</p>
+                <p style="margin-top: 8px; font-size: 12px; opacity: 0.6;">Desenvolvido por Marcos Lopes</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function baixarArquivo(nomeArquivo, nomeDownload) {
+            const url = 'assets/docs/' + nomeArquivo;
+            const btn = event.target;
+            const textoOriginal = btn.innerHTML;
+            btn.innerHTML = '⏳ Baixando...';
+            btn.disabled = true;
+            fetch(url).then(function(response) {
+                if (!response.ok) throw new Error('Arquivo não encontrado');
+                return response.blob();
+            }).then(function(blob) {
+                const blobUrl = URL.createObjectURL(blob);
+                const link = document.createElement('a');
+                link.href = blobUrl;
+                link.download = nomeDownload;
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+                URL.revokeObjectURL(blobUrl);
+                btn.innerHTML = '✅ Baixado!';
+                btn.disabled = false;
+                setTimeout(function() { btn.innerHTML = textoOriginal; }, 2000);
+            }).catch(function(error) {
+                btn.innerHTML = '❌ Erro';
+                btn.disabled = false;
+                alert('Erro ao baixar o arquivo.\n\nVerifique se o documento existe na pasta:\n📁 assets/docs/');
+                setTimeout(function() { btn.innerHTML = textoOriginal; }, 3000);
+            });
+        }
+
+        var mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        var navList = document.getElementById('navList');
+        if (mobileMenuBtn) {
+            mobileMenuBtn.addEventListener('click', function() { navList.classList.toggle('active'); });
+        }
+        document.querySelectorAll('.nav-list a').forEach(function(link) {
+            link.addEventListener('click', function() { navList.classList.remove('active'); });
+        });
+
+        var observerOptions = { threshold: 0.15, rootMargin: '0px 0px -50px 0px' };
+        var observer = new IntersectionObserver(function(entries) {
+            entries.forEach(function(entry) {
+                if (entry.isIntersecting) entry.target.classList.add('visible');
+            });
+        }, observerOptions);
+        document.querySelectorAll('.fade-up').forEach(function(el) { observer.observe(el); });
+    </script>
+</body>
+</html>

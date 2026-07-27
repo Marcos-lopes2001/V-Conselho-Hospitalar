@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="pt-MZ">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Participantes - V Conselho Hospitalar 2026</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        .participantes-page { padding: 40px 0 60px; }
+        .page-header {
+            background: linear-gradient(135deg, #dbeafe 0%, #ffffff 100%);
+            padding: 60px 0 40px; text-align: center; border-bottom: 2px solid #60a5fa;
+        }
+        .page-header h1 { font-size: 40px; color: #1a202c; }
+        .page-header p { color: #4a5568; margin-top: 8px; font-size: 18px; }
+
+        .tabela-participantes {
+            width: 100%; overflow-x: auto; background: white; border-radius: 16px;
+            box-shadow: var(--shadow); border: 1px solid #e2e8f0; margin-top: 30px;
+        }
+        .tabela-participantes table { width: 100%; border-collapse: collapse; font-size: 13px; }
+        .tabela-participantes th { background: var(--primary); color: white; padding: 12px 14px; text-align: left; font-weight: 600; }
+        .tabela-participantes td { padding: 10px 14px; border-bottom: 1px solid #e2e8f0; color: var(--text-dark); }
+        .tabela-participantes tbody tr:hover { background: var(--primary-bg); }
+        .tabela-participantes .proveniencia { font-weight: 600; color: var(--primary); }
+
+        .total-participantes {
+            text-align: center; margin-top: 20px; padding: 16px;
+            background: var(--primary-bg); border-radius: 12px;
+            font-size: 16px; font-weight: 600; color: var(--primary);
+        }
+
+        @media (max-width: 768px) {
+            .page-header h1 { font-size: 28px; }
+            .tabela-participantes { font-size: 12px; }
+            .tabela-participantes th, .tabela-participantes td { padding: 8px 10px; }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="logo-area">
+                <div class="emblema">
+                    <img src="assets/images/logo.png" alt="Logo" class="logo-img" onerror="this.src='https://via.placeholder.com/80x80?text=SSCM'">
+                </div>
+                <div class="titulo-logo">
+                    <span class="pequeno">Serviço de Saúde da Cidade de Maputo</span>
+                    <h1>V Conselho Hospitalar</h1>
+                    <span class="subtitulo">Cidade de Maputo · 2026</span>
+                </div>
+            </div>
+            <nav class="nav">
+                <button class="mobile-menu-btn" id="mobileMenuBtn">☰</button>
+                <ul class="nav-list" id="navList">
+                    <li><a href="index.html">Início</a></li>
+                    <li><a href="agenda.html">Agenda</a></li>
+                    <li><a href="participantes.html" class="active">Participantes</a></li>
+                    <li><a href="documentos.html">Documentos</a></li>
+                    <li><a href="fotos.html">Fotos</a></li>
+                    <li><a href="sobre.html">Sobre</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="page-header">
+            <div class="container">
+                <h1>Lista de Participantes</h1>
+                <p>V Conselho Hospitalar · 29 a 31 de Julho de 2026</p>
+            </div>
+        </section>
+
+        <section class="participantes-page">
+            <div class="container">
+                <div class="tabela-participantes fade-up">
+                    <table>
+                        <thead>
+                            <tr><th>N°</th><th>Proveniência</th><th>Função</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>1</td><td class="proveniencia">SSCM</td><td>Directora do Serviço de Saúde</td></tr>
+                            <tr><td>2</td><td class="proveniencia">SSCM</td><td>Médica Chefe Provincial Interina</td></tr>
+                            <tr><td>3</td><td class="proveniencia">SSCM</td><td>Chefe do DEPC</td></tr>
+                            <tr><td>4</td><td class="proveniencia">SSCM</td><td>Chefe de Departamento de RH</td></tr>
+                            <tr><td>5</td><td class="proveniencia">SSCM</td><td>Chefe de Repartição de DAF</td></tr>
+                            <tr><td>6</td><td class="proveniencia">SSCM</td><td>Chefe da RAM</td></tr>
+                            <tr><td>7</td><td class="proveniencia">SSCM</td><td>Chefe da RSP</td></tr>
+                            <tr><td>8</td><td class="proveniencia">SSCM</td><td>Responsável Provincial de Cuidados Clínicos</td></tr>
+                            <tr><td>9</td><td class="proveniencia">SSCM</td><td>Responsável da Junta Médica</td></tr>
+                            <tr><td>10</td><td class="proveniencia">SSCM</td><td>Chefe da Repartição da Aquisição</td></tr>
+                            <tr><td>11</td><td class="proveniencia">SSCM</td><td>Chefe da RLAF</td></tr>
+                            <tr><td>12</td><td class="proveniencia">SSCM</td><td>Supervisora de Enfermagem</td></tr>
+                            <tr><td>13</td><td class="proveniencia">SSCM</td><td>Gestora de Qualidade de Laboratório</td></tr>
+                            <tr><td>14</td><td class="proveniencia">SSCM</td><td>Ponto Focal de Qualidade Humanização</td></tr>
+                            <tr><td>15</td><td class="proveniencia">SSCM</td><td>Responsável Provincial de SMI</td></tr>
+                            <tr><td>16</td><td class="proveniencia">SSCM</td><td>Técnico de Estatística - M&A</td></tr>
+                            <tr><td>17</td><td class="proveniencia">SSCM</td><td>Estatística Hospitalar</td></tr>
+                            <tr><td>18</td><td class="proveniencia">SSCM</td><td>Chefe da Unidade de Controlo Interno</td></tr>
+                            <tr><td>19</td><td class="proveniencia">SSCM</td><td>Médico Especialista em Cirurgia</td></tr>
+                            <tr><td>20</td><td class="proveniencia">SSCM</td><td>Assessor de M&A</td></tr>
+                            <tr><td>21</td><td class="proveniencia">SSCM</td><td>Assessor Clínico</td></tr>
+                            <tr><td>22</td><td class="proveniencia">SSCM</td><td>Chefe do Gabinete</td></tr>
+                            <tr><td>23</td><td class="proveniencia">SSCM</td><td>Responsável da Medicina Privada</td></tr>
+                            <tr><td>24</td><td class="proveniencia">SSCM</td><td>RAJ</td></tr>
+                            <tr><td>25</td><td class="proveniencia">SSCM</td><td>Motorista</td></tr>
+                            <tr><td>26</td><td class="proveniencia">SSCM</td><td>Motorista</td></tr>
+                            <tr><td>27</td><td class="proveniencia">SSCM</td><td>Administrativa</td></tr>
+                            <tr><td>28</td><td class="proveniencia">MISAU</td><td>Responsável Nacional do Programa Ginecologia-Obstetrícia</td></tr>
+                            <tr><td>29</td><td class="proveniencia">HCM</td><td>Responsável de Serviços de Ginecologia-Obstetrícia</td></tr>
+                            <tr><td>30</td><td class="proveniencia">SEMMO</td><td>Médica Emergencista</td></tr>
+                            <tr><td>31</td><td class="proveniencia">HGJM</td><td>Director Clínico</td></tr>
+                            <tr><td>32</td><td class="proveniencia">HGJM</td><td>Enfermeira Chefe</td></tr>
+                            <tr><td>33</td><td class="proveniencia">HGJM</td><td>Responsável de Serviços Pediatria</td></tr>
+                            <tr><td>34</td><td class="proveniencia">HGJM</td><td>Chefe de Serviço de Pediatria</td></tr>
+                            <tr><td>35</td><td class="proveniencia">HGJM</td><td>Chefe de Serviço de Medicina</td></tr>
+                            <tr><td>36</td><td class="proveniencia">HGJM</td><td>Chefe de Serviço de Ginecologia-Obstetrícia</td></tr>
+                            <tr><td>37</td><td class="proveniencia">HGJM</td><td>Responsável de Serviços de Urgências</td></tr>
+                            <tr><td>38</td><td class="proveniencia">HGJM</td><td>NEP</td></tr>
+                            <tr><td>39</td><td class="proveniencia">HGM</td><td>Chefe de Serviço de Medicina</td></tr>
+                            <tr><td>40</td><td class="proveniencia">HGM</td><td>Enfermeira Chefe</td></tr>
+                            <tr><td>41</td><td class="proveniencia">HGM</td><td>Médico Psiquiatra</td></tr>
+                            <tr><td>42</td><td class="proveniencia">HGM</td><td>Chefe de Serviço de Ginecologia e Obstetrícia</td></tr>
+                            <tr><td>43</td><td class="proveniencia">HGM</td><td>Chefe de Serviço de Cirurgia</td></tr>
+                            <tr><td>44</td><td class="proveniencia">HGM</td><td>Chefe de Serviço de Berçário</td></tr>
+                            <tr><td>45</td><td class="proveniencia">HPI</td><td>Directora Clínica</td></tr>
+                            <tr><td>46</td><td class="proveniencia">HPI</td><td>NEP</td></tr>
+                            <tr><td>47</td><td class="proveniencia">HGC</td><td>Directora Clínica</td></tr>
+                            <tr><td>48</td><td class="proveniencia">HGC</td><td>Enfermeira Chefe da Maternidade</td></tr>
+                            <tr><td>49</td><td class="proveniencia">HGC</td><td>NEP</td></tr>
+                            <tr><td>50</td><td class="proveniencia">HGPC</td><td>Director Clínico</td></tr>
+                            <tr><td>51</td><td class="proveniencia">HGPC</td><td>Médico Especialista MFC</td></tr>
+                            <tr><td>52</td><td class="proveniencia">HGPC</td><td>NEP</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="total-participantes"> Total: 52 Participantes · 9 Instituições Representadas</div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <div class="footer-logo">
+                        <img src="assets/images/logo.png" alt="Logo" class="logo-footer" onerror="this.src='https://via.placeholder.com/50x50?text=SSCM'">
+                        <div><h3>V Conselho Hospitalar</h3><p>Cidade de Maputo · 2026</p></div>
+                    </div>
+                    <p class="footer-desc">Melhorar a Qualidade Assistencial nos Serviços de Saúde</p>
+                </div>
+                <div class="footer-links">
+                    <div><h4>Navegação</h4><ul><li><a href="index.html">Início</a></li><li><a href="agenda.html">Agenda</a></li><li><a href="participantes.html">Participantes</a></li><li><a href="documentos.html">Documentos</a></li><li><a href="fotos.html">Fotos</a></li><li><a href="sobre.html">Sobre</a></li></ul></div>
+                    <div><h4>Evento</h4><ul><li>29 a 31 de Julho de 2026</li><li>Província de Maputo</li><li>V Conselho Hospitalar</li></ul></div>
+                    <div><h4>Contacto</h4><ul><li>Departamento de Saúde</li><li>Repartição da Assistência Médica</li><li>SSCM - Cidade de Maputo</li></ul></div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2026 V Conselho Hospitalar · Serviço de Saúde da Cidade de Maputo</p>
+                <p class="lema-footer">"Qualidade Assistencial para uma Saúde Melhor"</p>
+                <p style="margin-top: 8px; font-size: 12px; opacity: 0.6;">Desenvolvido por Marcos Lopes</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

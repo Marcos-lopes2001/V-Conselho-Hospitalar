@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="pt-MZ">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fotos - V Conselho Hospitalar 2026</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        .fotos-page {
+            padding: 40px 0 60px;
+        }
+
+        .page-header {
+            background: linear-gradient(135deg, #dbeafe 0%, #ffffff 100%);
+            padding: 60px 0 40px;
+            text-align: center;
+            border-bottom: 2px solid #60a5fa;
+        }
+
+        .page-header h1 {
+            font-size: 40px;
+            color: #1a202c;
+        }
+
+        .page-header p {
+            color: #4a5568;
+            margin-top: 8px;
+            font-size: 18px;
+        }
+
+        .fotos-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            max-width: 1100px;
+            margin: 30px auto;
+        }
+
+        .resumo-card {
+            background: white;
+            border-radius: 20px;
+            padding: 35px 25px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            text-align: center;
+            border: 1px solid #e2e8f0;
+            transition: all 0.3s ease;
+        }
+
+        .resumo-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+            border-color: var(--primary);
+        }
+
+        .resumo-card .dia-tag {
+            display: inline-block;
+            padding: 4px 16px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            color: white;
+        }
+
+        .resumo-card .dia-tag.dia1 {
+            background: var(--primary);
+        }
+
+        .resumo-card .dia-tag.dia2 {
+            background: #48bb78;
+        }
+
+        .resumo-card .dia-tag.dia3 {
+            background: #d4a537;
+        }
+
+        .resumo-card h2 {
+            font-size: 22px;
+            color: #1a202c;
+            margin-bottom: 10px;
+        }
+
+        .resumo-card .data-evento {
+            display: inline-block;
+            background: #f7fafc;
+            padding: 6px 16px;
+            border-radius: 8px;
+            font-size: 13px;
+            color: #4a5568;
+            margin-bottom: 16px;
+        }
+
+        .resumo-card p {
+            color: #4a5568;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            font-size: 14px;
+        }
+
+        .btn-google-drive {
+            display: inline-block;
+            background: #4285f4;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-google-drive:hover {
+            background: #3367d6;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(66, 133, 244, 0.35);
+        }
+
+        .btn-google-drive.dia2-drive {
+            background: #48bb78;
+        }
+
+        .btn-google-drive.dia2-drive:hover {
+            background: #38a169;
+            box-shadow: 0 8px 25px rgba(72, 187, 120, 0.35);
+        }
+
+        .btn-google-drive.dia3-drive {
+            background: #d4a537;
+        }
+
+        .btn-google-drive.dia3-drive:hover {
+            background: #c4942a;
+            box-shadow: 0 8px 25px rgba(212, 165, 55, 0.35);
+        }
+
+        .total-fotos {
+            text-align: center;
+            margin-top: 20px;
+            padding: 16px;
+            background: #f7fafc;
+            border-radius: 12px;
+            border: 1px solid #e2e8f0;
+            max-width: 1100px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .total-fotos p {
+            margin: 0;
+            font-size: 14px;
+            color: #4a5568;
+        }
+
+        .total-fotos strong {
+            color: #1a202c;
+        }
+
+        @media (max-width: 1024px) {
+            .fotos-grid {
+                grid-template-columns: repeat(2, 1fr);
+                padding: 0 20px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .page-header h1 {
+                font-size: 28px;
+            }
+            .fotos-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+                padding: 0 15px;
+            }
+            .resumo-card {
+                padding: 24px 20px;
+            }
+            .resumo-card h2 {
+                font-size: 20px;
+            }
+            .btn-google-drive {
+                padding: 12px 20px;
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="logo-area">
+                <div class="emblema">
+                    <img src="assets/images/logo.png" alt="Logo" class="logo-img" onerror="this.src='https://via.placeholder.com/80x80?text=SSCM'">
+                </div>
+                <div class="titulo-logo">
+                    <span class="pequeno">Serviço de Saúde da Cidade de Maputo</span>
+                    <h1>V Conselho Hospitalar</h1>
+                    <span class="subtitulo">Cidade de Maputo · 2026</span>
+                </div>
+            </div>
+            <nav class="nav">
+                <button class="mobile-menu-btn" id="mobileMenuBtn">☰</button>
+                <ul class="nav-list" id="navList">
+                    <li><a href="index.html">Início</a></li>
+                    <li><a href="agenda.html">Agenda</a></li>
+                    <li><a href="participantes.html">Participantes</a></li>
+                    <li><a href="documentos.html">Documentos</a></li>
+                    <li><a href="fotos.html" class="active">Fotos</a></li>
+                    <li><a href="sobre.html">Sobre</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="page-header">
+            <div class="container">
+                <h1> Resumo Fotográfico</h1>
+                <p>Registos do V Conselho Hospitalar da Cidade de Maputo</p>
+            </div>
+        </section>
+
+        <section class="fotos-page">
+            <div class="container">
+                <div class="fotos-grid">
+                    <!-- DIA 1 -->
+                    <div class="resumo-card fade-up">
+                        <span class="dia-tag dia1">Dia 1</span>
+                        <h2>Dia da Abertura</h2>
+                        <div class="data-evento">
+                            29 de Julho de 2026 · Província de Maputo
+                        </div>
+                        <p>
+                            Registos fotográficos do primeiro dia do <strong>V Conselho Hospitalar</strong>,
+                            com a presença da <strong>Sra. Directora do Serviço de Saúde da Cidade de Maputo</strong>,
+                            membros do Presídium, chefes de departamento e representantes dos hospitais.
+                        </p>
+                        <a href="https://drive.google.com/drive/folders/SEU-LINK-DIA-1" target="_blank" class="btn-google-drive">
+                            Baixar Fotos - Dia 1
+                        </a>
+                    </div>
+
+                    <!-- DIA 2 -->
+                    <div class="resumo-card fade-up delay-1">
+                        <span class="dia-tag dia2">Dia 2</span>
+                        <h2>Segundo Dia</h2>
+                        <div class="data-evento">
+                            30 de Julho de 2026 · Província de Maputo
+                        </div>
+                        <p>
+                            Registos fotográficos do segundo dia do <strong>V Conselho Hospitalar</strong>,
+                            com momentos de painéis de debate, apresentações técnicas e discussões
+                            sobre a qualidade assistencial nos hospitais.
+                        </p>
+                        <a href="https://drive.google.com/drive/folders/SEU-LINK-DIA-2" target="_blank" class="btn-google-drive dia2-drive">
+                            Baixar Fotos - Dia 2
+                        </a>
+                    </div>
+
+                    <!-- DIA 3 -->
+                    <div class="resumo-card fade-up delay-2">
+                        <span class="dia-tag dia3">Dia 3</span>
+                        <h2>Terceiro e Último Dia</h2>
+                        <div class="data-evento">
+                            31 de Julho de 2026 · Província de Maputo
+                        </div>
+                        <p>
+                            Registos fotográficos do terceiro e último dia do <strong>V Conselho Hospitalar</strong>,
+                            com a apresentação do comunicado final, consensos, recomendações,
+                            sessão de encerramento e almoço de confraternização.
+                        </p>
+                        <a href="https://drive.google.com/drive/folders/SEU-LINK-DIA-3" target="_blank" class="btn-google-drive dia3-drive">
+                            Baixar Fotos - Dia 3
+                        </a>
+                    </div>
+                </div>
+
+                <div class="total-fotos">
+                    <p><strong>3 dias</strong> de registos fotográficos disponíveis para download</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <div class="footer-logo">
+                        <img src="assets/images/logo.png" alt="Logo" class="logo-footer" onerror="this.src='https://via.placeholder.com/50x50?text=SSCM'">
+                        <div>
+                            <h3>V Conselho Hospitalar</h3>
+                            <p>Cidade de Maputo · 2026</p>
+                        </div>
+                    </div>
+                    <p class="footer-desc">Melhorar a Qualidade Assistencial nos Serviços de Saúde</p>
+                </div>
+                <div class="footer-links">
+                    <div>
+                        <h4>Navegação</h4>
+                        <ul>
+                            <li><a href="index.html">Início</a></li>
+                            <li><a href="agenda.html">Agenda</a></li>
+                            <li><a href="participantes.html">Participantes</a></li>
+                            <li><a href="documentos.html">Documentos</a></li>
+                            <li><a href="fotos.html">Fotos</a></li>
+                            <li><a href="sobre.html">Sobre</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4>Evento</h4>
+                        <ul>
+                            <li>29 a 31 de Julho de 2026</li>
+                            <li>Província de Maputo</li>
+                            <li>V Conselho Hospitalar</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4>Contacto</h4>
+                        <ul>
+                            <li>Departamento de Saúde</li>
+                            <li>Repartição da Assistência Médica</li>
+                            <li>SSCM - Cidade de Maputo</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2026 V Conselho Hospitalar · Serviço de Saúde da Cidade de Maputo</p>
+                <p class="lema-footer">"Qualidade Assistencial para uma Saúde Melhor"</p>
+                <p style="margin-top: 8px; font-size: 12px; opacity: 0.6;">Desenvolvido por Marcos Lopes</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Menu Mobile
+        var mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        var navList = document.getElementById('navList');
+
+        if (mobileMenuBtn) {
+            mobileMenuBtn.addEventListener('click', function() {
+                navList.classList.toggle('active');
+            });
+        }
+
+        document.querySelectorAll('.nav-list a').forEach(function(link) {
+            link.addEventListener('click', function() {
+                navList.classList.remove('active');
+            });
+        });
+
+        // Animações
+        var observerOptions = { threshold: 0.15, rootMargin: '0px 0px -50px 0px' };
+        var observer = new IntersectionObserver(function(entries) {
+            entries.forEach(function(entry) {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-up').forEach(function(el) {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>

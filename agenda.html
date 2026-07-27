@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html lang="pt-MZ">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agenda - V Conselho Hospitalar 2026</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        .agenda-page {
+            padding: 40px 0 60px;
+        }
+
+        .page-header {
+            background: linear-gradient(135deg, #dbeafe 0%, #ffffff 100%);
+            padding: 60px 0 40px;
+            text-align: center;
+            border-bottom: 2px solid #60a5fa;
+        }
+
+        .page-header h1 {
+            font-size: 40px;
+            color: #1a202c;
+        }
+
+        .page-header p {
+            color: #4a5568;
+            margin-top: 8px;
+            font-size: 18px;
+        }
+
+        .agenda-tabs {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 32px;
+            border-bottom: 2px solid #e2e8f0;
+        }
+
+        .tab-btn {
+            background: none;
+            border: none;
+            padding: 12px 24px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            color: #718096;
+            transition: all 0.3s;
+        }
+
+        .tab-btn.active {
+            color: var(--primary);
+            border-bottom: 2px solid var(--primary);
+        }
+
+        .agenda-dia {
+            display: none;
+        }
+
+        .agenda-dia.active {
+            display: block;
+        }
+
+        .categoria-dia {
+            margin-top: 40px;
+            margin-bottom: 20px;
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--text-dark);
+            border-left: 4px solid var(--primary);
+            padding-left: 16px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .programacao-item {
+            display: flex;
+            gap: 20px;
+            padding: 16px 20px;
+            border-bottom: 1px solid #e2e8f0;
+            transition: background 0.3s;
+            background: var(--white);
+            border-radius: 12px;
+            margin-bottom: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            align-items: flex-start;
+        }
+
+        .programacao-item:hover {
+            background: var(--gray-bg);
+            transform: translateX(4px);
+        }
+
+        .programacao-item.destaque {
+            background: var(--primary-bg);
+            border-left: 4px solid var(--primary);
+            border-radius: 12px;
+        }
+
+        .programacao-item.debate {
+            background: #ebf8ff;
+            border-left: 4px solid #4299e1;
+            border-radius: 12px;
+        }
+
+        .programacao-item.painel {
+            background: #fef3c7;
+            border-left: 4px solid #d4a537;
+            border-radius: 12px;
+        }
+
+        .programacao-hora {
+            min-width: 130px;
+            font-weight: 700;
+            color: var(--primary);
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            flex-shrink: 0;
+        }
+
+        .programacao-info {
+            flex: 1;
+        }
+
+        .programacao-info .categoria {
+            display: inline-block;
+            padding: 2px 12px;
+            border-radius: 4px;
+            font-size: 10px;
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+
+        .programacao-info .categoria.abertura { background: #d4a537; color: white; }
+        .programacao-info .categoria.plenaria { background: #9b59b6; color: white; }
+        .programacao-info .categoria.discussao { background: #48bb78; color: white; }
+        .programacao-info .categoria.logistica { background: #cbd5e0; color: #2d3748; }
+        .programacao-info .categoria.debate { background: #4299e1; color: white; }
+        .programacao-info .categoria.painel { background: #d4a537; color: white; }
+        .programacao-info .categoria.encerramento { background: #e53e3e; color: white; }
+
+        .programacao-info h3 {
+            font-size: 17px;
+            color: var(--text-dark);
+            margin-bottom: 4px;
+        }
+
+        .programacao-info .responsavel {
+            font-size: 13px;
+            color: var(--text-light);
+            margin-bottom: 2px;
+        }
+
+        .programacao-info .responsavel strong {
+            color: var(--text-dark);
+        }
+
+        .programacao-info .local {
+            font-size: 12px;
+            color: var(--text-light);
+            font-weight: 500;
+            display: block;
+            margin-top: 4px;
+        }
+
+        .total-eventos {
+            text-align: center;
+            margin-top: 30px;
+            padding: 16px;
+            background: var(--primary-bg);
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        @media (max-width: 768px) {
+            .programacao-item {
+                flex-direction: column;
+                gap: 8px;
+                padding: 14px 16px;
+            }
+            .programacao-hora {
+                min-width: auto;
+                font-size: 13px;
+            }
+            .page-header h1 {
+                font-size: 28px;
+            }
+            .categoria-dia {
+                font-size: 20px;
+            }
+            .programacao-info h3 {
+                font-size: 15px;
+            }
+            .agenda-tabs {
+                flex-wrap: wrap;
+            }
+            .tab-btn {
+                padding: 8px 16px;
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="logo-area">
+                <div class="emblema">
+                    <img src="assets/images/logo.png" alt="Logo" class="logo-img" onerror="this.src='https://via.placeholder.com/80x80?text=SSCM'">
+                </div>
+                <div class="titulo-logo">
+                    <span class="pequeno">Serviço de Saúde da Cidade de Maputo</span>
+                    <h1>V Conselho Hospitalar</h1>
+                    <span class="subtitulo">Cidade de Maputo · 2026</span>
+                </div>
+            </div>
+            <nav class="nav">
+                <button class="mobile-menu-btn" id="mobileMenuBtn">☰</button>
+                <ul class="nav-list" id="navList">
+                    <li><a href="index.html">Início</a></li>
+                    <li><a href="agenda.html" class="active">Agenda</a></li>
+                    <li><a href="participantes.html">Participantes</a></li>
+                    <li><a href="documentos.html">Documentos</a></li>
+                    <li><a href="fotos.html">Fotos</a></li>
+                    <li><a href="sobre.html">Sobre</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="page-header">
+            <div class="container">
+                <h1>Agenda do Evento</h1>
+                <p>V Conselho Hospitalar · 29 a 31 de Julho de 2026</p>
+            </div>
+        </section>
+
+        <section class="agenda-page">
+            <div class="container">
+                <div class="agenda-tabs">
+                    <button class="tab-btn active" data-dia="dia1">Dia 1 · 29/07</button>
+                    <button class="tab-btn" data-dia="dia2">Dia 2 · 30/07</button>
+                    <button class="tab-btn" data-dia="dia3">Dia 3 · 31/07</button>
+                </div>
+
+                <!-- DIA 1 - 29 de Julho -->
+                <div id="dia1" class="agenda-dia active">
+                    <div class="categoria-dia">
+                        Quarta-feira, 29 de Julho de 2026
+                    </div>
+
+                    <div class="programacao-item">
+                        <div class="programacao-hora">08:30 – 09:00</div>
+                        <div class="programacao-info">
+                            <span class="categoria logistica">Credenciamento</span>
+                            <h3>Chegada e Registo dos Participantes</h3>
+                            <p class="responsavel"><strong>Responsável:</strong> Protocolo</p>
+                            <span class="local">Província de Maputo</span>
+                        </div>
+                    </div>
+
+                    <div class="programacao-item destaque">
+                        <div class="programacao-hora">09:00 – 09:10</div>
+                        <div class="programacao-info">
+                            <span class="categoria abertura">Abertura ★</span>
+                            <h3>Sessão de Abertura</h3>
+                            <p class="responsavel"><strong>Responsável:</strong> Exma. Sra. Directora do SSCM</p>
+                            <span class="local">Província de Maputo</span>
+                        </div>
+                    </div>
+
+                    <div class="programacao-item">
+                        <div class="programacao-hora">09:10 – 09:15</div>
+                        <div class="programacao-info">
+                            <span class="categoria plenaria">Apresentação</span>
+                            <h3>Apresentação da Agenda do Conselho Hospitalar</h3>
+                            <p class="responsavel"><strong>Responsável:</strong> MC</p>
+                            <span class="local">Província de Maputo</span>
+                        </div>
+                    </div>
+
+                    <div class="programacao-item">
+                        <div class="programacao-hora">09:15 – 09:30</div>
+                        <div class="programacao-info">
+                            <span class="categoria plenaria">Apresentação</span>
+                            <h3>Grau de Cumprimento da Matriz do Conselho Hospitalar Anterior</h3>
+                            <p class="responsavel"><strong>Responsável:</strong> Médica Chefe Provincial</p>
+                            <span class="local">Província de Maputo</span>
+                        </div>
+                    </div>
+
+                    <div class="programacao-item">
+                        <div class="programacao-hora">09:30 – 10:00</div>
+                        <div class="programacao-info">
+                            <span class="categoria discussao">Discussão</span>
+                            <h3>Discussão</h3>
+                            <p class="responsavel"><strong>Responsável:</strong> Todos</p>
+                            <span class="local">Província de Maputo</span>
+                        </div>
+                    </div>
+
+                    <div class="programacao-item">
+                        <div class="programacao-hora">10:00 – 10:15</div>
+                        <div class="programacao-info">
+                            <span class="categoria plenaria">Apresentação</span>
+                            <h3>Ponto de Situação de Reporte de Dados de DHIS2</h3>
+                            <p class="responsavel"><strong>Responsável:</strong> Dra Flora Chambe</p>
+                            <span class="local">Província de Maputo</span>
+                        </div>
+                    </div>
+
+                    <div class="programacao-item">
+                        <div class="programacao-hora">10:15 – 10:45</div>
+                        <div class="programacao-info">
+                            <span class="categoria discussao">Discussão</span>
+                            <h3>Discussão</h3>
+                            <p class="responsavel"><strong>Responsável:</strong> Todos</p>
+                            <span class="local">Província de Maputo</span>
+                        </div>
+                    </div>
+
+                    <div class="programacao-item">
+                        <div class="programacao-hora">10:45 – 11:15</div>
+                        <div class="programacao-info">
+                            <span class="categoria logistica">Pausa</span>
+                            <h3>Lanche</h3>
+                            <p class="responsavel"><strong>Responsável:</strong> Todos</p>
+                            <span class="local">Área de Convivência</span>
+                        </div>
+                    </div>
+
+                    <div class="programacao-item">
+                        <div class="programacao-hora">11:15 – 11:30</div>
+                        <div class="programacao-info">
+                            <span class="categoria plenaria">Apresentação</span>
+                            <h3>Balanço Semestral de Indicadores Hospitalar</h3>
+                            <p class="responsavel"><strong>Responsável:</strong> RAM - Dra Luisa Mureche</p>
+                            <span class="local">Província de Maputo</span>
+                        </div>
+                    </div>
+
+                    <div class="programacao-item">
+                        <div class="programacao-hora">11:30 – 11:45</div>
+                        <div class="programacao-info">
+                            <span class="categoria plenaria">Apresentação</span>
+                            <h3>Resultados de Avaliação de Processos Clínicos</h3>
+                            <p class="responsavel"><strong>Responsável:</strong> M&A - Reginalda Massingue</p>
+                            <span class="local">Província de Maputo</span>
+                        </div>
+                    </div>
+
+                    <div class="programacao-item painel">
+                        <div class="programacao-hora">12:15 – 13:30</div>
+                        <div class="programacao-info">
+                            <span class="categoria painel">Painel I</span>
+                            <h3>Cuidado de Emergência</h3>
+                            <p class="responsavel">
+                                <strong>Moderador:</strong> Dr. Fayaz Ahmat Adam Issa<br>
+                                <strong>Tema:</strong> Triagem como porta de entrada para melhoria da qualidade
+                            </p>
+                            <span class="local">Província de Maputo</span>
+                        </div>
+                    </div>
+
+                    <div class="programacao-item">
+                        <div class="programacao-hora">13:30 – 14:00</div>
+                        <div class="programacao-info">
+                            <span class="categoria discussao">Discussão</span>
+                            <h3>Discussão</h3>
+                            <p class="responsavel"><strong>Responsável:</strong> Todos</p>
+                            <span class="local">Província de Maputo</span>
+                        </div>
+                    </div>
+
+                    <div class="programacao-item">
+                        <div class="programacao-hora">14:00 – 15:00</div>
+                        <div class="programacao-info">
+                            <span class="categoria logistica">Almoço</span>
+                            <h3>Almoço</h3>
+                            <p class="responsavel"><strong>Responsável:</strong> Todos</p>
+                            <span class="local">Restaurante</span>
+                        </div>
+                    </div>
+
+                    <div class="programacao-item">
+                        <div class="programacao-hora">15:00 – 15:15</div>
+                        <div class="programacao-info">
+                            <span class="categoria plenaria">Relato de Caso</span>
+                            <h3>Relato de Caso: Síndrome de Prune-Bully</h3>
+                            <p class="responsavel"><strong>Responsável:</strong> HGM - Dra Luzidina Martins</p>
+                            <span class="local">Província de Maputo</span>
+                        </div>
+                    </div>
+
+                    <div class="programacao-item destaque">
+                        <div class="programacao-hora">15:45 – 16:00</div>
+                        <div class="programacao-info">
+                            <span class="categoria encerramento">Encerramento</span>
+                            <h3>Considerações e Fim das Actividades do 1º dia</h3>
+                            <p class="responsavel"><strong>Responsável:</strong> Exma. Sra. Directora do SSCM</p>
+                            <span class="local">Província de Maputo</span>
+                        </div>
+                    </div>
+
+                    <div class="total-eventos">
+                        Total: 15 Eventos · Dia 1
+                    </div>
+                </div>
+
+                <!-- DIA 2 - 30 de Julho -->
+                <div id="dia2" class="agenda-dia">
+                    <div class="categoria-dia">
+                        Quinta-feira, 30 de Julho de 2026
+                    </div>
+
+                    <div class="programacao-item">
+                        <div class="programacao-hora">07:00 – 07:30</div>
+                        <div class="programacao-info">
+                            <span class="categoria logistica">Entrada</span>
+                            <h3>Chegada dos Participantes</h3>
+                            <p class="responsavel"><strong>Responsável:</strong> Todos</p>
+                            <span class="local">Província de Maputo</span>
+                        </div>
+                    </div>
+
+                    <div class="programacao-item">
+                        <div class="programacao-hora">07:30 – 07:40</div>
+                        <div class="programacao-info">
+                            <span class="categoria plenaria">Leitura</span>
+                            <h3>Apresentação da Síntese do Primeiro Dia</h3>
+                            <p class="responsavel"><strong>Responsável:</strong> Equipe de Síntese</p>
+                            <span class="local">Província de Maputo</span>
+                        </div>
+                    </div>
+
+                    <div class="programacao-item">
+                        <div class="programacao-hora">07:40 – 08:00</div>
+                        <div class="programacao-info">
+                            <span class="categoria discussao">Discussão</span>
+                            <h3>Discussão</h3>
+                            <p class="responsavel"><strong>Responsável:</strong> Todos</p>
+                            <span class="local">Província de Maputo</span>
+                        </div>
+                    </div>
+
+                    <div class="programacao-item">
+                        <div class="programacao-hora">08:00 – 08:15</div>
+                        <div class="programacao-info">
+                            <span class="categoria plenaria">Apresentação</span>
+                            <h3>Nova Lei do Sistema Nacional de Saúde</h3>
+                            <p class="responsavel"><strong>Responsável:</strong> SSCM - Dra Anabela João</p>
+                            <span class="local">Província de Maputo</span>
+                        </div>
+                    </div>
+
+                    <div class="programacao-item">
+                        <div class="programacao-hora">09:00 – 09:30</div>
+                        <div class="programacao-info">
+                            <span class="categoria discussao">Discussão</span>
+                            <h3>Discussão</h3>
+                            <p class="responsavel"><strong>Responsável:</strong> Todos</p>
+                            <span class="local">Província de Maputo</span>
+                        </div>
+                    </div>
+
+                    <div class="programacao-item">
+                        <div class="programacao-hora">09:30 – 09:45</div>
+                        <div class="programacao-info">
+                            <span class="categoria plenaria">Apresentação</span>
+                            <h3>Saúde Ocupacional: Cólica saturnina</h3>
+                            <p class="responsavel"><strong>Responsável:</strong> CEM - Dra Maria do Ceu Garife</p>
+                            <span class="local">Província de Maputo</span>
+                        </div>
+                    </div>
+
+                    <div class="programacao-item">
+                        <div class="programacao-hora">09:45 – 09:55</div>
+                        <div class="programacao-info">
+                            <span class="categoria discussao">Discussão</span>
+                            <h3>Discussão</h3>
+                            <p class="responsavel"><strong>Responsável:</strong> Todos</p>
+                            <span class="local">Província de Maputo</span>
+                        </div>
+                    </div>
+
+                    <div class="programacao-item">
+                        <div class="programacao-hora">09:55 – 10:25</div>
+                        <div class="programacao-info">
+                            <span class="categoria logistica">Pausa</span>
+                            <h3>Lanche</h3>
+                            <p class="responsavel"><strong>Responsável:</strong> Todos</p>
+                            <span class="local">Área de Convivência</span>
+                        </div>
+                    </div>
+
+                    <div class="programacao-item painel">
+                        <div class="programacao-hora">10:25 – 11:05</div>
+                        <div class="programacao-info">
+                            <span class="categoria painel">Painel II</span>
+                            <h3>Atendimento Humanizado à Mulher e RN</h3>
+                            <p class="responsavel">
+                                <strong>Moderador:</strong> Nelson Talhada<br>
+                                <strong>Tema:</strong> Estratégias para redução da mortalidade materna e neonatal
+                            </p>
+                            <span class="local">Província de Maputo</span>
+                        </div>
+                    </div>
+
+                    <div class="programacao-item">
+                        <div class="programacao-hora">11:05 – 11:15</div>
+                        <div class="programacao-info">
+                            <span class="categoria discussao">Discussão</span>
+                            <h3>Discussão</h3>
+                            <p class="responsavel"><strong>Responsável:</strong> Todos</p>
+                            <span class="local">Província de Maputo</span>
+                        </div>
+                    </div>
+
+                    <div class="programacao-item">
+                        <div class="programacao-hora">11:15 – 11:30</div>
+                        <div class="programacao-info">
+                            <span class="categoria plenaria">Apresentação</span>
+                            <h3>Desafios/Fluxo da gestão de Material Médico-cirúrgico</h3>
+                            <p class="responsavel"><strong>Responsável:</strong> RLAF - Dra Rosa Ali</p>
+                            <span class="local">Província de Maputo</span>
+                        </div>
+                    </div>
+
+                    <div class="programacao-item painel">
+                        <div class="programacao-hora">11:40 – 12:30</div>
+                        <div class="programacao-info">
+                            <span class="categoria painel">Painel III</span>
+                            <h3>Saúde do Trabalhador</h3>
+                            <p class="responsavel">
+                                <strong>Moderador:</strong> Flávio Mandlate<br>
+                                <strong>Tema:</strong> Promoção do Bem-Estar Laboral
+                            </p>
+                            <span class="local">Província de Maputo</span>
+                        </div>
+                    </div>
+
+                    <div class="programacao-item">
+                        <div class="programacao-hora">12:30 – 13:10</div>
+                        <div class="programacao-info">
+                            <span class="categoria discussao">Discussão</span>
+                            <h3>Discussão</h3>
+                            <p class="responsavel"><strong>Responsável:</strong> Todos</p>
+                            <span class="local">Província de Maputo</span>
+                        </div>
+                    </div>
+
+                    <div class="programacao-item">
+                        <div class="programacao-hora">13:10 – 14:20</div>
+                        <div class="programacao-info">
+                            <span class="categoria logistica">Almoço</span>
+                            <h3>Almoço</h3>
+                            <p class="responsavel"><strong>Responsável:</strong> Todos</p>
+                            <span class="local">Restaurante</span>
+                        </div>
+                    </div>
+
+                    <div class="programacao-item destaque">
+                        <div class="programacao-hora">14:20 – 15:00</div>
+                        <div class="programacao-info">
+                            <span class="categoria encerramento">Encerramento</span>
+                            <h3>Considerações Finais</h3>
+                            <p class="responsavel"><strong>Responsável:</strong> Exma. Sra. Directora do SSCM</p>
+                            <span class="local">Província de Maputo</span>
+                        </div>
+                    </div>
+
+                    <div class="total-eventos">
+                        Total: 15 Eventos · Dia 2
+                    </div>
+                </div>
+
+                <!-- DIA 3 - 31 de Julho -->
+                <div id="dia3" class="agenda-dia">
+                    <div class="categoria-dia">
+                        Sexta-feira, 31 de Julho de 2026
+                    </div>
+
+                    <div class="programacao-item">
+                        <div class="programacao-hora">08:00 – 09:00</div>
+                        <div class="programacao-info">
+                            <span class="categoria logistica">Entrada</span>
+                            <h3>Chegada dos Participantes</h3>
+                            <p class="responsavel"><strong>Responsável:</strong> Todos</p>
+                            <span class="local">Província de Maputo</span>
+                        </div>
+                    </div>
+
+                    <div class="programacao-item">
+                        <div class="programacao-hora">09:00 – 10:00</div>
+                        <div class="programacao-info">
+                            <span class="categoria plenaria">Plenária</span>
+                            <h3>Sessão Plenária: Consensos e Recomendações</h3>
+                            <p class="responsavel"><strong>Responsável:</strong> Todos</p>
+                            <span class="local">Província de Maputo</span>
+                        </div>
+                    </div>
+
+                    <div class="programacao-item">
+                        <div class="programacao-hora">10:00 – 10:30</div>
+                        <div class="programacao-info">
+                            <span class="categoria logistica">Pausa</span>
+                            <h3>Lanche</h3>
+                            <p class="responsavel"><strong>Responsável:</strong> Todos</p>
+                            <span class="local">Área de Convivência</span>
+                        </div>
+                    </div>
+
+                    <div class="programacao-item destaque">
+                        <div class="programacao-hora">10:30 – 11:30</div>
+                        <div class="programacao-info">
+                            <span class="categoria plenaria">Apresentação</span>
+                            <h3>Apresentação do Comunicado Final</h3>
+                            <p class="responsavel"><strong>Responsável:</strong> Equipa de Síntese</p>
+                            <span class="local">Província de Maputo</span>
+                        </div>
+                    </div>
+
+                    <div class="programacao-item destaque">
+                        <div class="programacao-hora">11:30 – 12:30</div>
+                        <div class="programacao-info">
+                            <span class="categoria encerramento">Encerramento ★</span>
+                            <h3>Considerações Finais e Encerramento</h3>
+                            <p class="responsavel"><strong>Responsável:</strong> Exma. Sra. Directora do SSCM</p>
+                            <span class="local">Província de Maputo</span>
+                        </div>
+                    </div>
+
+                    <div class="programacao-item">
+                        <div class="programacao-hora">12:30 – 14:00</div>
+                        <div class="programacao-info">
+                            <span class="categoria logistica">Almoço</span>
+                            <h3>Almoço de Confraternização</h3>
+                            <p class="responsavel"><strong>Responsável:</strong> Todos</p>
+                            <span class="local">Restaurante</span>
+                        </div>
+                    </div>
+
+                    <div class="total-eventos">
+                        Total: 6 Eventos · Dia 3
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <div class="footer-logo">
+                        <img src="assets/images/logo.png" alt="Logo" class="logo-footer" onerror="this.src='https://via.placeholder.com/50x50?text=SSCM'">
+                        <div>
+                            <h3>V Conselho Hospitalar</h3>
+                            <p>Cidade de Maputo · 2026</p>
+                        </div>
+                    </div>
+                    <p class="footer-desc">Melhorar a Qualidade Assistencial nos Serviços de Saúde</p>
+                </div>
+                <div class="footer-links">
+                    <div>
+                        <h4>Navegação</h4>
+                        <ul>
+                            <li><a href="index.html">Início</a></li>
+                            <li><a href="agenda.html">Agenda</a></li>
+                            <li><a href="participantes.html">Participantes</a></li>
+                            <li><a href="documentos.html">Documentos</a></li>
+                            <li><a href="fotos.html">Fotos</a></li>
+                            <li><a href="sobre.html">Sobre</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4>Evento</h4>
+                        <ul>
+                            <li>29 a 31 de Julho de 2026</li>
+                            <li>Província de Maputo</li>
+                            <li>V Conselho Hospitalar</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4>Contacto</h4>
+                        <ul>
+                            <li>Departamento de Saúde</li>
+                            <li>Repartição da Assistência Médica</li>
+                            <li>SSCM - Cidade de Maputo</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2026 V Conselho Hospitalar · Serviço de Saúde da Cidade de Maputo</p>
+                <p class="lema-footer">"Qualidade Assistencial para uma Saúde Melhor"</p>
+                <p style="margin-top: 8px; font-size: 12px; opacity: 0.6;">Desenvolvido por Marcos Lopes</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Menu Mobile
+        var mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        var navList = document.getElementById('navList');
+
+        if (mobileMenuBtn) {
+            mobileMenuBtn.addEventListener('click', function() {
+                navList.classList.toggle('active');
+            });
+        }
+
+        document.querySelectorAll('.nav-list a').forEach(function(link) {
+            link.addEventListener('click', function() {
+                navList.classList.remove('active');
+            });
+        });
+
+        // Tabs da Agenda
+        var tabBtns = document.querySelectorAll('.tab-btn');
+        var agendaDias = document.querySelectorAll('.agenda-dia');
+
+        tabBtns.forEach(function(btn) {
+            btn.addEventListener('click', function() {
+                var dia = this.getAttribute('data-dia');
+                
+                tabBtns.forEach(function(b) {
+                    b.classList.remove('active');
+                });
+                this.classList.add('active');
+                
+                agendaDias.forEach(function(d) {
+                    d.classList.remove('active');
+                });
+                document.getElementById(dia).classList.add('active');
+            });
+        });
+
+        // Animações
+        var observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
+        var observer = new IntersectionObserver(function(entries) {
+            entries.forEach(function(entry) {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.programacao-item').forEach(function(el) {
+            el.classList.add('fade-up');
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
